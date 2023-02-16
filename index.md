@@ -1,5 +1,5 @@
 ---
-welcome to my blog
+title: welcome to my blog
 ---
 ```
  _._     _,-'""`-._
