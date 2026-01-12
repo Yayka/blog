@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -37,8 +38,8 @@
             right: 0;
             bottom: 0;
             background-image:
-                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.15) 2px, rgba(0,0,0,.15) 4px),
-                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,.15) 2px, rgba(0,0,0,.15) 4px);
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, .15) 2px, rgba(0, 0, 0, .15) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0, 0, 0, .15) 2px, rgba(0, 0, 0, .15) 4px);
             opacity: 0.4;
             pointer-events: none;
         }
@@ -231,7 +232,9 @@
             margin: 20px 0;
         }
 
-        .content h1, .content h2, .content h3 {
+        .content h1,
+        .content h2,
+        .content h3 {
             font-family: 'Cinzel', serif;
             color: #c9b58a;
             margin-top: 40px;
@@ -254,7 +257,8 @@
             font-size: 1.3em;
         }
 
-        .content ul, .content ol {
+        .content ul,
+        .content ol {
             margin-left: 40px;
             margin-bottom: 20px;
         }
@@ -305,6 +309,7 @@
         }
     </style>
 </head>
+
 <body>
     <div class="page-container">
         <div class="quest-interface">
@@ -320,7 +325,7 @@
 
                 <div class="content-wrapper">
                     <aside class="sidebar">
-                        <h2 class="sidebar-title">Quests</h2>
+                        <h2 class="sidebar-title">Posts</h2>
                         <ul class="quest-list">
                             <li class="quest-list-item">
                                 <a href="/">Home</a>
@@ -334,7 +339,7 @@
                     </aside>
 
                     <main class="main-content">
-                        {% if page.title %}
+                        {% if page.title and page.url != "/" %}
                         <h1 class="page-title">{{ page.title }}</h1>
                         {% endif %}
 
@@ -351,4 +356,5 @@
         </div>
     </div>
 </body>
+
 </html>
