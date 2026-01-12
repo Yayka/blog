@@ -66,3 +66,10 @@ Note: This repository appears to be from a GitHub Skills course template. The RE
 ## Theme
 
 Uses Jekyll's `minima` theme which provides default styling and layout. The theme can be customized but currently uses defaults.
+
+## Coding Style
+
+**Comments:**
+- Use comments sparingly
+- Only add comments when logic isn't self-evident
+- Prefer clear, self-documenting code over explanatory comments

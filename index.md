@@ -2,14 +2,14 @@
 title: welcome to my blog
 ---
 
-<div style="text-align: center;">
-
 ```
  _._     _,-'""`-._
 (,-.`._,'(       |\`-/|
     `-.-' \ )-`( , o o)
           `-    \`_`"'-
 ```
+
+<div style="text-align: center;">
 
 if you like cats and/or computer networks you are at the best spot on the entire internet.
 
