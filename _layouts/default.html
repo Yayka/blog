@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ page.title | default: site.title }}</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Spectral:wght@300;400;600&display=swap');
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background: #0a0806;
+            font-family: 'Spectral', serif;
+            color: #d4c5a0;
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        .page-container {
+            position: relative;
+            min-height: 100vh;
+            background:
+                radial-gradient(ellipse at center, rgba(30, 25, 20, 0.4) 0%, transparent 70%),
+                linear-gradient(180deg, #1a1410 0%, #0a0806 50%, #1a1410 100%);
+        }
+
+        .page-container::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-image:
+                repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0,0,0,.15) 2px, rgba(0,0,0,.15) 4px),
+                repeating-linear-gradient(90deg, transparent, transparent 2px, rgba(0,0,0,.15) 2px, rgba(0,0,0,.15) 4px);
+            opacity: 0.4;
+            pointer-events: none;
+        }
+
+        .quest-interface {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 40px 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .quest-border {
+            border: 4px solid #3d2f1f;
+            background: rgba(0, 0, 0, 0.85);
+            box-shadow:
+                inset 0 0 100px rgba(0, 0, 0, 0.9),
+                0 15px 50px rgba(0, 0, 0, 0.95);
+            position: relative;
+        }
+
+        .corner-ornament {
+            position: absolute;
+            width: 50px;
+            height: 50px;
+            border: 3px solid #5a4a35;
+        }
+
+        .corner-ornament.top-left {
+            top: 15px;
+            left: 15px;
+            border-right: none;
+            border-bottom: none;
+        }
+
+        .corner-ornament.top-right {
+            top: 15px;
+            right: 15px;
+            border-left: none;
+            border-bottom: none;
+        }
+
+        .corner-ornament.bottom-left {
+            bottom: 15px;
+            left: 15px;
+            border-right: none;
+            border-top: none;
+        }
+
+        .corner-ornament.bottom-right {
+            bottom: 15px;
+            right: 15px;
+            border-left: none;
+            border-top: none;
+        }
+
+        .quest-header {
+            background: linear-gradient(180deg, #2a2015 0%, #1a1410 100%);
+            border-bottom: 3px solid #3d2f1f;
+            padding: 30px 50px;
+            text-align: center;
+            position: relative;
+        }
+
+        .quest-header::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 300px;
+            height: 3px;
+            background: linear-gradient(90deg, transparent, #8b7355, transparent);
+        }
+
+        .site-title {
+            font-family: 'Cinzel', serif;
+            font-size: 3em;
+            color: #e8d4a8;
+            text-shadow:
+                2px 2px 6px rgba(0, 0, 0, 0.9),
+                0 0 25px rgba(232, 212, 168, 0.3);
+            letter-spacing: 6px;
+            font-weight: 700;
+            text-transform: uppercase;
+        }
+
+        .content-wrapper {
+            display: flex;
+            min-height: 600px;
+        }
+
+        .sidebar {
+            width: 300px;
+            background: rgba(20, 16, 12, 0.6);
+            border-right: 2px solid #3d2f1f;
+            padding: 40px 30px;
+        }
+
+        .sidebar-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5em;
+            color: #c9b58a;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 1px solid #5a4a35;
+        }
+
+        .quest-list {
+            list-style: none;
+        }
+
+        .quest-list-item {
+            margin-bottom: 20px;
+        }
+
+        .quest-list-item a {
+            color: #b8a882;
+            text-decoration: none;
+            font-size: 1.1em;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+            padding: 8px 0;
+        }
+
+        .quest-list-item a::before {
+            content: '◆';
+            color: #8b7355;
+            margin-right: 12px;
+            font-size: 0.8em;
+            flex-shrink: 0;
+        }
+
+        .quest-list-item a:hover {
+            color: #e8d4a8;
+            transform: translateX(5px);
+        }
+
+        .quest-list-item a:hover::before {
+            color: #c9b58a;
+        }
+
+        .main-content {
+            flex: 1;
+            padding: 50px 60px;
+            background: rgba(15, 12, 10, 0.4);
+        }
+
+        .page-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5em;
+            color: #e8d4a8;
+            margin-bottom: 30px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            font-weight: 600;
+        }
+
+        .content {
+            font-size: 1.15em;
+            line-height: 1.9;
+            color: #c9b798;
+        }
+
+        .content p {
+            margin-bottom: 20px;
+        }
+
+        .content pre {
+            background: rgba(0, 0, 0, 0.5);
+            border: 1px solid #3d2f1f;
+            padding: 20px;
+            overflow-x: auto;
+            color: #b8a882;
+            margin: 20px 0;
+        }
+
+        .content code {
+            font-family: 'Courier New', monospace;
+            color: #d4c5a0;
+        }
+
+        .content img {
+            max-width: 100%;
+            height: auto;
+            border: 2px solid #5a4a35;
+            margin: 20px 0;
+        }
+
+        .content h1, .content h2, .content h3 {
+            font-family: 'Cinzel', serif;
+            color: #c9b58a;
+            margin-top: 40px;
+            margin-bottom: 20px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .content h1 {
+            font-size: 2em;
+            border-bottom: 2px solid #3d2f1f;
+            padding-bottom: 10px;
+        }
+
+        .content h2 {
+            font-size: 1.6em;
+        }
+
+        .content h3 {
+            font-size: 1.3em;
+        }
+
+        .content ul, .content ol {
+            margin-left: 40px;
+            margin-bottom: 20px;
+        }
+
+        .content li {
+            margin-bottom: 10px;
+        }
+
+        .content a {
+            color: #d4a944;
+            text-decoration: none;
+            border-bottom: 1px solid #d4a944;
+            transition: all 0.3s ease;
+        }
+
+        .content a:hover {
+            color: #e8c060;
+            border-bottom-color: #e8c060;
+        }
+
+        .post-meta {
+            font-size: 0.9em;
+            color: #8b7355;
+            font-style: italic;
+            margin-bottom: 30px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid rgba(90, 74, 58, 0.3);
+        }
+
+        @media (max-width: 968px) {
+            .content-wrapper {
+                flex-direction: column;
+            }
+
+            .sidebar {
+                width: 100%;
+                border-right: none;
+                border-bottom: 2px solid #3d2f1f;
+            }
+
+            .main-content {
+                padding: 30px;
+            }
+
+            .site-title {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="page-container">
+        <div class="quest-interface">
+            <div class="quest-border">
+                <div class="corner-ornament top-left"></div>
+                <div class="corner-ornament top-right"></div>
+                <div class="corner-ornament bottom-left"></div>
+                <div class="corner-ornament bottom-right"></div>
+
+                <div class="quest-header">
+                    <h1 class="site-title">{{ site.title | default: "Quest Journal" }}</h1>
+                </div>
+
+                <div class="content-wrapper">
+                    <aside class="sidebar">
+                        <h2 class="sidebar-title">Quests</h2>
+                        <ul class="quest-list">
+                            <li class="quest-list-item">
+                                <a href="/">Home</a>
+                            </li>
+                            {% for post in site.posts %}
+                            <li class="quest-list-item">
+                                <a href="{{ post.url }}">{{ post.title }}</a>
+                            </li>
+                            {% endfor %}
+                        </ul>
+                    </aside>
+
+                    <main class="main-content">
+                        {% if page.title %}
+                        <h1 class="page-title">{{ page.title }}</h1>
+                        {% endif %}
+
+                        {% if page.date %}
+                        <div class="post-meta">{{ page.date | date: "%B %d, %Y" }}</div>
+                        {% endif %}
+
+                        <div class="content">
+                            {{ content }}
+                        </div>
+                    </main>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
