@@ -11,10 +11,10 @@ title: welcome to my blog
 
 <div style="text-align: center;">
 
-if you like cats and/or computer networks you are at the best spot on the entire internet.
+<p>if you like cats and/or computer networks you are at the best spot on the entire internet.</p>
 
-I don't have much here yet but for now you can look at my handsome cat
+<p>I don't have much here yet but for now you can look at my handsome cat</p>
 
-![Subject](https://user-images.githubusercontent.com/33806204/219293819-067cf448-4a3c-4d28-bafb-0e9cc4406459.png)
+<img src="https://user-images.githubusercontent.com/33806204/219293819-067cf448-4a3c-4d28-bafb-0e9cc4406459.png" alt="Subject">
 
 </div>
